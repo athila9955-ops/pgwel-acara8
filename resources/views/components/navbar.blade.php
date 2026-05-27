@@ -5,7 +5,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house"></i> Home</a>
@@ -20,6 +20,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa-solid fa-info-circle"></i> Tentang</a>
                 </li>
+                @guest
+                    <li class="nav-item bg-primary rounded">
+                        <a class="nav-link text-white" href="{{ route('login') }}"><i
+                                class="fa-solid
+                    fa-arrow-right-to-bracket"></i> Login</a>
+                    </li>
+                @endguest
+                @auth
+                    <li class="nav-item bg-danger rounded">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link text-white"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
